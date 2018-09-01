@@ -1,0 +1,317 @@
+	ES6
+	1*改变this指向;
+		1.Bind(this);返回一个函数,加上小括号执行
+		2.call(this);返回一个对象
+		3.applay(this)返回一个立即执行的对象;
+	2*let/const
+		1.let不会变量提升;
+		2.形成块级作用域;
+		3.同一作用域内不可重复声明一个变量;
+		4.let声明的全局变量不再是windows的属性;
+	3*变量解构
+		1.数组:let[a,b,c] = [1,2,2];
+			交换两个数[b,a] = [a,b];
+		2.对象let{a,b,c} = {a:1,b:2,c:3};
+	4*.字符串扩展
+		1.includes();父串是否包含子串,true/false;第二个参数表示搜索位置;
+		2.startsWith();父串是否包含子串,且字串在父串首部;
+		3.endsWith();父串是否包含字串,且字串在末尾;
+		4.repeat();重复次数;
+	5*模板字符串
+		1.`${变量}`
+	6*箭头函数
+		function(){} == ()=>{};改变this指向,指向外部函数;
+	7*数据类型
+		1.symbol;保证变量中的值是唯一的,不可更改;
+	8*set集合
+		1.let set = new Set([]);自动去重;
+		2.长度:size
+		3.add();添加元素
+		4.delete();删除元素
+		5.has();是否有?元素;
+		6.clear();清空
+		7.keys();获取所有key
+		8.values();获取所有value;
+		9.entries();获取所有key和value;
+		10.遍历:for...of...;
+			for(let i of set.keys()){
+				console.log(i)
+			}
+		11*for...in...与for..of..区别
+			for in 变量代表下标;
+			for of 变量代表value;
+		12*扩展运算符...
+			var arr = [1,2,3];
+			console.log([...new Set(arr)])
+		13*map;键值对的集合
+			1.let map = new Map([[]]);初始化二维数组;
+			2.set();添加元素;
+			3.get();获取元素;
+			4.clear();
+			5.delete();
+			6.has();
+			7.keys();
+			8.values();
+			9.entries();
+		14*类及继承
+			class Person(){
+				construct(name,age){
+					this.name = name;
+					this,age = age;
+				}
+				showName(){
+					return this.name;
+				}
+			}
+			继承
+			class Son extends Person{
+				constructor(name,age){
+					super(name,age)
+				}
+				showAge(){
+					return this.age;
+				}
+			}
+		15*生成器函数,解决异步产生的问题;
+			function * fn(){
+				yield 'how',
+				yield 'are',
+				yield 'you'
+			}
+			var me = fn();
+			console.log(me.next());how
+			console.log(me.next());are
+			console.log(me.next());you
+		/*******************************************************正则表达式***************************************/
+		1*创建正则表达式
+			1.构造函数:new RegExp('表达式','标志位');
+			2.字面量:/表达式/标志位;
+			3.标志位:g:全局;i:忽略大小写;
+		2*元字符
+			1.{}[]()
+				{}:限制前面字符出现的次数;{n}出现n次{n,m}出现最少n次最多m次
+				[]:表示范围,[a-zA-Z0-9_#!@];
+				():表示组,一起匹配;
+			2.+*?
+				*:出现0到无限次
+				+:出现1到无限次
+				?:出现0~1次
+			3.^$
+				^:限制开头字符;或者放在[]开头表示取反;
+				$:限制结尾字符;
+			4.|\.
+				|:或
+				\:转义符
+				.:表示模糊匹配,一个点代表一个字符;
+			5.表示
+				1.{\d}:{\D}:表示数字/非数字
+				2.{\s}:{\S}:表示空白\非空白
+				3.{\w}:{\W}:表示数字字母下划线/非数字字母下划线
+				4.{\b}:{\B}:表示边界/非边界
+			6.正则表达式方法
+				1.test():判断是否与参数符合?true/false
+				2.exec():返回一个数组,第一个参数是整个正则匹配的内容,第二个是第一个组匹配的内容.... 没有匹配到则返回null受组影响
+				3.match():同exec(),受标志位影响
+			/***************************************************事件对象*******************************************/
+			1.什么是事件对象?
+				当绑定时间的函数触发时,详细信息都保存在一个地方,这个地方就是事件对象;
+			2.获取事件对象及兼容写法
+				var e = evt || window.event;
+			3.如何获取鼠标编码值
+				event.button
+					标准左:0;中:1;右:2;
+					IE9及以下:左:1;中:4;右:2;
+				兼容写法:
+					function getMouseCode(evt){
+						var e = evt || window.event;
+						if(evt){
+							return evt;
+						}else if(window.event){
+							swith (e.button){
+								case 1:return 0;
+								case 4:return 1;
+								case 2:return 2;
+							}
+						}
+					}
+			4.鼠标相对-绝对-屏幕-可视坐标值
+				相对:e.offsetX/Y:相对于父元素的坐标值;
+				绝对:e.pageX/Y:相对于真个页面的坐标值,包括滚动出去的部分
+				屏幕:e.screenX/Y:相对于整个屏幕的坐标值
+				可视:e.clientX/Y:页面可见部分坐标值
+			5.键盘时间及编码值
+				1.event.charCode   event.keyCode   event.whichCode   兼容写法:e.charCode||e.keyCode||e.whichCode
+				2.onkeyup/down:获取所有按键的编码值
+				  onkeypress:获取除了控制键的其他按键的编码值;
+			6.事件冒泡
+				1.子孙到祖先:冒泡    祖先到子孙:捕获
+				2.阻止冒泡: event.stopPropagation? event.stopPropagation() :  e.cancelBubble = true;
+			7.浏览器默认行为及如何阻止
+				1.右键菜单事件: return false;
+				2.阻止超链接跳转:e.preventDafault? e.preventDafault() : e.returnValue = true;
+			8.事件监听器(一个事件绑定多个函数)
+				1.添加事件监听器:function addLisenterEvent(obj,event,fn,boo){
+					if(addEventListener){
+						addEventListener(参数)
+					}
+					else{
+						attachEvent('on' + event,fn);
+					}
+				}
+				2.移除事件监听器
+					oBtn.removeEnentListener('事件','fn1','fn2');
+					oBtn.detachEvent('事件','fn1','fn2');
+					兼容写法同上
+			9.事件委托机制(冒泡原理,子元素触发时,层层上冒至父元素触发事件,默然冒泡)
+				1.获取事件源 etarget = event.target || event.srcElement;
+				if(target.nodeName.toLowerCase == 'li'){
+					此处这么些为了只在点击子元素时触发;
+				}
+			/**********************************************************DOM***********************************/
+			1.获取DOM
+				1.document.getElementById();
+				2.document.getElementsByClassName();
+				3.document.getElementsByTagName();
+				4.document.getelementbyname();
+				5.document.queryselector();
+				6.document.queruselectorall();
+				7.单独获取html:document.documentElement;
+				8.单独获取body:document.body;
+			2.创建元素
+				1.document.createlement();
+			3.修改
+				1.父节点.replaceChild();
+			4.删除
+				1.父节点.removeChild();
+			5.添加到页面
+				1.父节点.appendChild();
+			6.常见节点
+						nodename	nodetype	nodevalue
+				元素	标签名		1			null
+				属性	属性名		2			属性值
+				文本	#text		3			文本内容(纯文本)
+			7.属性及自定义属性
+				对象.getattribute('属性');
+				对象.setattribute('属性','属性值');
+				对象.removeattribute('属性');
+			8.innerHtml/innerText/outerHtml
+				innerHtml:获取/设置文本,标签起作用
+				innerText:获取/设置文本,标签不起作用;
+				outerHtml:全部输出,包括标签;
+			9.获取元素对象的所有子节点
+				父元素.children:返回数组
+			10.高集选取
+				1.firstchild			firstelementchild
+				2.lastchild				lastelementchild
+				3.parentnode
+				4.precioussibiling		previouslementsibilinge
+				5.nextslbiling			nextelementsibiling
+			11.克隆节点
+				对象.clone()   只克隆本节点,不包括子节点
+				对象.clone(true) 全部复制,包括子节点;
+			12.获取非行内样式
+				function(obj,attr){
+					return obj.currenStyle? obj.currentStyle[attr] : getComputedStyle(obj,1)[attr];
+				}
+			13.插入子节点
+				父元素.inserBefore('新节点','旧节点');
+			/****************************************************************BOM*********************************/
+			1.BOM顶级对象是?
+				window
+			2.window下有哪些对象?
+				1.location
+				2.history
+				3.document
+				4.frames
+				5.scren
+				6.navigation
+			3.如何实现页面跳转?
+				location.href = 'www.baidu.com';
+				window.location = 'www.baidu.com';
+			4.如何实现页面刷新?
+				location.reload();从浏览器缓存中重新加载
+				location.reload(true);从服务器端重新加载;
+			5.前进后退
+				history.back
+				history.forward
+				histotr.go();正数:向前跳转几页,负数:向后跳转几页;
+			6.如何获取浏览器操作系统信息?
+				navigation.userAgent
+			7.输出方式
+				1.window.alert()输出框
+				2.window.prompt();输入框
+				3.window.confirm();点击是返回true,点击否返回false;
+			8.计时器
+				setInterval(function(){},5000);每隔5秒执行一次
+				clearinterval();
+				setTimerout(function(){},5000);仅执行一次;
+				clearTimeout();
+			/************************************************************ES5String***************************/
+			1.如何创建字符串?
+				1.new String();
+				2.字面量
+			2.字符串属性
+				length:字符串长度
+			3.字符串方法
+				查替截转(不影响原数组)
+				查:		charAt(下标);查找对应下标字符;找不到返回空串
+						charCodeAt(下标);查找指定下标字符并转为编码;
+						indexOf('字串',下标);返回第一个字串的下标;从前向后查找;
+						lastIndexOf('字串',下标);从后向前查找,字串下标;
+				替:		replace('旧串',新串);
+				截:		subString(start,end);可以交换位置,不支持负数
+						substr(start,lenght);
+						slice(start,end):不可以交换位置,支持负数;
+				转:		toLowerCase();转小写
+						loUpperCase();转大写
+						split(切割符,length);指定长度字串转为数组
+			4.静态方法:
+				String.fromCharCode();编码转为字符
+			/*********************************************************MATH&&DATE************************/
+						math
+			1.圆周率:Math.PI;
+			2.绝对值:Math.abs();
+			3.近似值:	Math.round()四舍五入
+						Math.floor()向下取整
+						Math.ceil();向上取整
+			4.最值:		Math.max();
+						Math.main();
+					求数组中最大值
+					Math.max.apply(null,arr);
+			5.随机数
+				Math.random();0~1随机数,取不到1;
+				Math.floor(Math.randow()*(max - min + 1) + min)
+			6.m的n次方:Math.pow(m,n);
+			7.开方:Math.sql();
+					Date
+			1.新建日期
+				var date = new Date();
+				date.getFullYear();
+				date,getMonth();
+				date.getDate();
+				date.getDay();
+				date.getHours();
+				date.getMinutes();
+				date.getSeconds();
+				date.getMilliseconds();
+				date.getTime();
+				date.toLocalString();以本地格式显示;
+				date.toLocalDateString();以本地格式显示日期;
+				date.toLocalTimeString();以本地格式显示时间;
+			/***************************************************数组*********************************/
+			1.什么是数组?
+				存储一组或一系列数据的容器;
+			2.如何定义数组?
+				1.JSON方式:	var arr = [];
+				2.构造函数:	var arr = new Array(5);长度为5的数组,若为字符串则代表元素
+			3.方法:
+				增删改截,拼复排转;
+				增:	unshift();
+					push()
+				删:	shift()
+					pop()
+				改:	splice(start,length,元素);长度代表删除元素个数;
+				
+				
+			
+			
