@@ -267,22 +267,32 @@
 						split(切割符,length);指定长度字串转为数组
 			4.静态方法:
 				String.fromCharCode();编码转为字符
+			5.字符集
+				1.范围:4E00-9FA5(20902个);
+				
 			/*********************************************************MATH&&DATE************************/
 						math
 			1.圆周率:Math.PI;
+			
 			2.绝对值:Math.abs();
+			
 			3.近似值:	Math.round()四舍五入
 						Math.floor()向下取整
 						Math.ceil();向上取整
+						
 			4.最值:		Math.max();
 						Math.main();
 					求数组中最大值
 					Math.max.apply(null,arr);
+					
 			5.随机数
 				Math.random();0~1随机数,取不到1;
 				Math.floor(Math.randow()*(max - min + 1) + min)
+				
 			6.m的n次方:Math.pow(m,n);
+			
 			7.开方:Math.sql();
+			
 					Date
 			1.新建日期
 				var date = new Date();
@@ -301,9 +311,11 @@
 			/***************************************************数组*********************************/
 			1.什么是数组?
 				存储一组或一系列数据的容器;
+				
 			2.如何定义数组?
 				1.JSON方式:	var arr = [];
 				2.构造函数:	var arr = new Array(5);长度为5的数组,若为字符串则代表元素
+				
 			3.方法:
 				增删改截,拼复排转;
 				增:	unshift();
@@ -311,6 +323,24 @@
 				删:	shift()
 					pop()
 				改:	splice(start,length,元素);长度代表删除元素个数;
+				截:slice(start,end);
+				拼:concat(元素);若为数组,则将数组中的数据拿出放到其他数组中;
+				复:push,concat,slice,遍历
+				排:	reverse();将数组逆序输出
+					sort();按照字符编码从小到大排序,sort(function(a,b){return a -b});
+				转:	toString();用于数组转为字符串,用于变量将数字转为指定进制;
+					join();将数组转为指定分隔符的字符串;
+			4.for in 用于遍历数组和对象;
+			
+			5.排序算法
+				冒泡排序:
+				for(var i = 0; i < arr.length; i++){
+					for(var j =0; j < arr.length - i; j ++){
+						var t = arr[j];
+						arr[j] = arr[j + 1];
+						arr[j + 1] = arr[j];
+					}
+				}
 				
 				
 			
