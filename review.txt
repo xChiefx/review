@@ -529,16 +529,38 @@
 				1.什么是Promise?
 					内置构造函数,ES6新增解决异步产生问题的对象;
 				2.如何用?
-					new Promise(function(resolve,reject){
-						语句块
-						resolve()/reject();
-					}).then()/catch(new Promise(function(resolve,reject){
-						语句块
-						标志;
-					}))
+					function fn(){
+						return new Promise(function(resolve,reject){
+												if(){
+													语句块;
+													resolve()
+												}else{
+													语句块;
+													reject();
+												}
+											})
+					}
+					let pp = fn();
+					pp.then(new promise(....));
+					pp.catch(new promise(....))
 					resolve():有此标志则执行then()
 					reject():有此标志则执行catch();
 					then()/catch()都是对象Promise的方法,智能Promise对象调用;
-				3.静态方法:Promise.all():所有对象都返回resolve时执行语句;
+				3.静态方法:Promise.all([1,2,3]):所有对象都返回resolve,返回resolve,只要有一个返回reject,则返回reject;
+					let op = Promise.al([loadImg(1),loadImg(2),loadImg(3)]);
+					op.then();
+					op.catch();
 				/***********************************************************Ajax同源策略****************************/
+				1.什么是同源?
+					同端口,同域名,同协议;
+				2.精髓
+					他认为从任何站点装载的信赖内容是不安全的,当被浏览器半信半疑的运行在沙箱时,他们应该只被允许访问来自同一个站点的资源,而不是那些来自其他站点,可能怀有恶意的资源
+				3.跨域JSONP
+					三部:
+						1.获取到接口;
+						2.请求数据,script标签+src属性+要执行的函数名; $cb=函数名;
+						3.执行函数
+				
+				
+				
 				
