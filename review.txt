@@ -662,6 +662,66 @@
 					gulp-csnano:压缩CSS文件
 					gulp-concat:合并JS文件
 				/*-------------------------------------sass----------------------*/
+					基于Ruby环境
+				1.全局安装
+					gem install sass
+				2.换源
+					2.	gem sources -a https://ruby.taobao.org/
+				3.检测是否安装成功
+					sass -v
+				4.升级
+					gem update sass
+				5.卸载
+					gem uninstall sass
+				6.四种编译风格
+					1.nested:嵌套缩进的css代码,默认值;
+					2.expanded:没有缩进的 扩展的css代码;
+					3.compact:简洁格式的css代码;
+					4.compressed:压缩后的css代码;
+				7.导入
+					@import,如果文件名以下划线开头则不会被编译为css文件;  _public.scss;
+					exp:@import 'public';
+				8.嵌套
+					1.选择器嵌套
+					2.属性嵌套;
+					3.伪类嵌套;
+					4.&代表父级选择器;
+				9.定义变量
+					格式:   $color:12px !default表示默认值;   作为属性值使用
+					同一变量,后声明的覆盖先声明的;
+					$top = top !default;
+					border-#{$top}:作为属性值来使用;
+				10.判断语句
+					@if{}
+					@else if{}
+					@else{}
+				11.数组map
+					1.声明一个数组  $var(key1:value1,key2:value2,key3:value3)
+					2.获取元素对个数:$length($map);
+					3.去值:map-get($map,key)
+					4.获取所有key     map-keys($map)
+					5.获取所有value   map-values($map)
+					6.包含指定key?    map-has-key($map,key)
+					7.合并两个数组	  map-merge($map1,$map2)
+					8.移除制定key     map-remove($map,key)
+				12.循环
+					1.@for $var from  开始值  through  结束值   :包含结束值
+					  @for $var form  开始值  to       结束值   :不包含结束值
+				13.@each   用来列表循环(list)或映射数据的循环
+					$icon:success error warning ;
+						@each $icon in $icons {
+							background-img:url(img/icons/#{$icon}.pnd)
+						}
+				14.@mixin 宏
+					1.@mixin name(1,2){
+						
+					}
+					2.引用 @include  name(1,2)
+				15继承
+					@extend  +选择器;
+					
+					
+				
 				
 				
 				
