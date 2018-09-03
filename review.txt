@@ -738,7 +738,77 @@
 							所有代码写在这里;
 						})
 					3.子模块
-					
+						define(function(){
+							子块代码;
+							return{
+								a:a,
+								fn:fn
+							}
+						})
+						引用同2,先导入,在依赖;
+						调用:引入.fn();;;;引入.a;
+					4.AMD-----requireJS
+					  CMD-----seaJS
+				/*-----------------------------------------------------------------------GII------------------*/
+				1.安装Git
+				2.配置:
+					1.git config --global "name?"
+					2.git config --global "email?"
+					3.查询:git config --global user.name/email
+				3.创建版本库
+					1.mkdir learngit(库名)
+					2.cd learngit //进入库
+					3.pwd  //用于显示当前目录;
+				4.把目录变成git可以管理的仓库
+					git init
+				注意不要用windows自带记事本编译,否则会遇到意想不到的问题;
+				5.添加到暂存区
+					git add "文件名"                            git status:查看工作区状态;
+					git add .  //全部提交
+					git add -a //全部添加
+				6.添加到版本区
+					git commit -m "说明内容"
+				7.显示提交日志(修改记录)
+					git log (版本太多q退出)
+				8.比较
+					1.工作区和暂存区比较:git diff
+					2.暂存区和版本区比较:git diff --cached
+					3.工作区和版本区比较:git diff master
+				9.回退版本
+					1.git reset --hard HEAD^ :回退到上一个版本(尖角号代表上一个版本HEAD代表当前版本;HEAD~100:回退到第100个版本)
+					2.git reset --hard commitID :回到ID所在版本;
+					3.git reflog :操作记录;
+				10.总结
+					1.HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+					2.穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+					3.要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本
+				11.撤销
+					1.直接丢弃工作区修改 git checkout -- filename
+					2.丢弃暂存区修改:git reset HEAD -- filename:回到第一步;
+					3.丢弃版本去修改:见第9点
+				12.删除
+					1.git rm filename :删除暂存区文件;
+					2.git rm -f filename :删除工作区+暂存区文件;
+					3.git rm --cached filename :删除暂存区,保留工作区;
+				13.远程仓库
+					1.SSH:关联远程仓库:git remote add origin git@github.com:xChiefx/learngit1.git;
+					2.上传至远程仓库:git push origin master;
+					3:https:git push +地址+master;
+					4.从远程仓库克隆至本地: git clone + 仓库地址;
+				14.分支
+					1.查看分支：git branch
+					2.创建分支：git branch <name>
+					3.切换分支：git checkout <name>
+					4.创建+切换分支：git checkout -b <name>
+					5.合并某分支到当前分支：git merge <name>
+					6.删除分支：git branch -d <name>
+				15.标签
+					1.命令git push origin <tagname>可以推送一个本地标签；
+					2.命令git push origin --tags可以推送全部未推送过的本地标签；
+					3.命令git tag -d <tagname>可以删除一个本地标签；
+					4.命令git push origin :refs/tags/<tagname>可以删除一个远程标签。
+				16.
+	
 					
 					
 				
