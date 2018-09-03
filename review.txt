@@ -719,6 +719,26 @@
 					2.引用 @include  name(1,2)
 				15继承
 					@extend  +选择器;
+				16函数
+					@funtion name(参数){
+						代码
+					}
+					调用:直接调用name(参数)
+				17.模块化require.js
+					1.html文件里导入
+						<script src='require.js路径' defer aysnc='true' data-main='模块路径'>
+					
+					2.主模块导入js文件
+						require.config({
+							"jquery":"jquery路径,不加后缀",			名字只能是jquery
+							"cookie":"jquery.cookie路径,不加后缀"
+						})
+						
+						require(["jquery","cookie"],function($,cookie){
+							所有代码写在这里;
+						})
+					3.子模块
+					
 					
 					
 				
