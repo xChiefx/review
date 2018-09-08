@@ -1,0 +1,76 @@
+1.nodejs两种工作方式
+    1.node + 文件名:运行js文件;
+    2.node :进入交互模式;
+2.node内部模块
+    1. fs
+        1.同步读取写入文件
+            const fs = require('fs');
+            const data = fs.readFileSync('文件路径','utf-8);
+            fs.writeFileSync('文件路径',data);
+
+        2.异步读写文件
+        fs.readFile('文件路径',(err,data)=>{
+            fs.writeFile('文件路径',data,(err)=>{
+                console.log('出错误啦');
+            })
+        });
+        3.流读写文件
+        const rs = fs.crearReadStream('文件路径');
+        str = ''
+        rs.on('data',(chunk)=>{
+            str += chunk;
+        });
+        rs.end('end',()=>{      //读取结束
+            console.log(str);
+        });
+        流写入文件
+        const rs1 = fs.creatWriteStream('写入文件的路径');
+        rs1.write(str);
+        rs1.end();  //写入结束;
+    2.http创建服务
+        const http = require('http');
+        let server = http.crearServer((req,res)=>{
+            res.writeHead(200,{'content-type':'text/html'});  // 不同文件响应头不同,可以用mime-types插件
+            res.end('you get me');    //服务器响应内容;
+        });
+        server.listen(3000,()=>{    //监听端口;
+            console.log('listening port:3000')
+        });
+        req.url:请求的ulr-----localhost后面?前面一段;
+        url.parse(url,true):url为外部模块,需要安装,这个方法的作用是将地址栏中的url,转为对象;其中这个对象中的query对象保存着前台传入后台的数据,名为name值,                            值为text文本框值;
+3.解决异步读写文件金字塔问题(嵌套过多);
+    const fs = require('fs');
+    new Promis((resolve,reject)=>{
+        fs.readFile('路径',(err,data)=>{
+            if(!err){
+                resolve(data);
+            }
+        })
+    }).then((data)=>{
+        fa.writeFile('路径',data,(err)=>{
+            if(err){
+                console.log('err');
+            }else{
+                console.log('Ok');
+            }
+        })
+    })
+4.****如何破解同月策略的限制?
+    在响应头对象哪里添加"Access-control-Allow-Origin":"*";
+5.express
+    基于nodejs的web开发框架,具有快速,开放,极简的特点;
+6.ejs模板引擎(服务端)
+    app.set('view engine','ejs');
+7.baiduTemplate:模板引擎(前端)
+    1.script导入js文件;
+    2.baidu.template('自定义模板(id名)',{
+        list:res.lis    //传入页面的数据res为get回来的数据;
+    })
+8.****数据的增 删 改 查;
+    本质就是根据不同的url,返回不同的数据;
+9.****前后端分离 增 删 改 查;
+
+
+
+
+
