@@ -69,6 +69,10 @@
 8.****数据的增 删 改 查;
     本质就是根据不同的url,返回不同的数据;
 9.****前后端分离 增 删 改 查;
+10****快速创建项目
+		1.yarn global add express-genereator	//全局安装
+		2.express --view=ejs	//设置引擎
+		3.yarn				//安装依赖
 
 
 
